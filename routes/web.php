@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,5 +33,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/courses/edit/{id}', [CourseController::class, 'update'])->name('admin/courses/update');
     Route::get('/admin/courses/delete/{id}', [CourseController::class, 'delete'])->name('admin/courses/delete');
     Route::get('/admin/courses/show/{id}', [CourseController::class, 'show'])->name('admin/courses/show');
-
+    Route::get('/admin/users', [UserController::class, 'index'])->name('admin/users');
 });
