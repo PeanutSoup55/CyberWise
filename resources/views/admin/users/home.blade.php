@@ -17,35 +17,35 @@
 
                     <hr />
                         @if(Session::has('success'))
-                        <div class="alert alert-success" role="alert">
-                        {{ Session::get('success') }}
-                        </div>
+                            <div class="alert alert-success" role="alert">
+                                {{ Session::get('success') }}
+                            </div>
                         @endif
-                        <table class="table table-hover">
+                    <table class="table table-hover">
                         <thead class="table-primary">
-                        <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        @forelse ($users as $user)
-                        <tr>
-                        <td class="align-middle">{{ $loop->iteration }}</td>
-                        <td class="align-middle">{{ $user->name }}</td>
-                        <td class="align-middle">{{ $user->email }}</td>  
-                        <td class="align-middle">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <a href="{{ route('admin/users/delete', ['id'=>$user->id]) }}" type="button" class="btn btn-danger">Delete</a>
-                            </div>  
-                        </td>
-                        </tr>
-                        @empty
-                        <tr>
-                        <td class="text-center" colspan="5">User not found</td>
-                        </tr>
-                        @endforelse
+                            @forelse ($users as $user)
+                                <tr>
+                                    <td class="align-middle">{{ $loop->iteration }}</td>
+                                    <td class="align-middle">{{ $user->name }}</td>
+                                    <td class="align-middle">{{ $user->email }}</td>  
+                                    <td class="align-middle">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a href="{{ route('admin/users/delete', ['id'=>$user->id]) }}" type="button" class="btn btn-danger">Delete</a>
+                                        </div>  
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td class="text-center" colspan="5">User not found</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>              
                 </div>
