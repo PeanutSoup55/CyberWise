@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LessonController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,7 +34,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/courses/edit/{id}', [CourseController::class, 'update'])->name('admin/courses/update');
     Route::get('/admin/courses/delete/{id}', [CourseController::class, 'delete'])->name('admin/courses/delete');
     Route::get('/admin/courses/show/{id}', [CourseController::class, 'show'])->name('admin/courses/show');
+
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin/users');
     Route::get('/admin/users/delete/{id}', [UserController::class, 'delete'])->name('admin/users/delete');
+
+    Route::get('/admin/{course}/lessons/create', [LessonController::class, 'create'])->name('admin/lessons/create');
+    Route::post('/admin/{course}/lessons', [LessonController::class, 'store'])->name('admin/lessons/store');
+    Route::get('/admin/lessons/{lesson}', [LessonController::class, 'show'])->name('admin/lessons/show');
+    Route::get('/admin/courses/lessons/{lesson}/edit', [LessonController::class, 'edit'])->name('admin/lessons/edit');
+    Route::delete('/admin/courses/lessons/{lesson}', [LessonController::class, 'destroy'])->name('admin/lessons/delete');
 
 });
