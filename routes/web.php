@@ -34,4 +34,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/courses/delete/{id}', [CourseController::class, 'delete'])->name('admin/courses/delete');
     Route::get('/admin/courses/show/{id}', [CourseController::class, 'show'])->name('admin/courses/show');
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin/users');
+    Route::get('/admin/users/delete/{id}', [UserController::class, 'delete'])->name('admin/users/delete');
+
 });

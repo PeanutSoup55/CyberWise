@@ -13,4 +13,16 @@ class UserController extends Controller
         $total = User::count(); 
         return view('admin.users.home', compact('users', 'total'));
     }
+
+    public function delete($id)
+    {
+        $users = User::findOrFail($id)->delete();
+        if ($users) {
+            session()->flash('success', 'User Deleted Successfully');
+            return redirect(route('admin/users'));
+        } else {
+            session()->flash('error', 'User Not Delete successfully');
+            return redirect(route('admin/users'));
+        }
+    }
 }

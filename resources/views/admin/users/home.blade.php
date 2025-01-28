@@ -34,7 +34,11 @@
                         <tr>
                         <td class="align-middle">{{ $loop->iteration }}</td>
                         <td class="align-middle">{{ $user->name }}</td>
-                        <td class="align-middle">{{ $user->email }}</td>    
+                        <td class="align-middle">{{ $user->email }}</td>  
+                        <td class="align-middle">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="{{ route('admin/users/delete', ['id'=>$user->id]) }}" type="button" class="btn btn-danger">Delete</a>
+                            </div>  
                         </td>
                         </tr>
                         @empty
