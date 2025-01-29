@@ -1,13 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin Courses') }}
-        </h2>
+        
         <nav class="space-x-4">
             <a href="{{ route('admin/courses') }}" class="text-gray-800 hover:underline">Courses</a>
             <a href="{{ route('admin/courses/create') }}" class="text-gray-800 hover:underline">Add Course</a>
             <a href="{{ route('admin/users')}}" class="text-gray-800 hover:underline">Users</a>
         </nav>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Admin Courses') }}
+        </h2>
     </x-slot>
 
     <div class="py-12">
@@ -27,6 +28,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>

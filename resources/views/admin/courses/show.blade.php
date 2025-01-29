@@ -1,14 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Course Details') }}
-        </h2>
+       
         <nav class="space-x-4">
             <a href="{{ route('admin/courses') }}" class="text-gray-800 hover:underline">Courses</a>
             <a href="{{ route('admin/courses/create') }}" class="text-gray-800 hover:underline">Add Course</a>
             <a href="{{ route('admin/users')}}" class="text-gray-800 hover:underline">Users</a>
 
         </nav>
+         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Course Details') }}
+        </h2>
     </x-slot>
 
     <div class="py-12">
@@ -49,8 +50,11 @@
                                         <div class="btn-group" role="group">
                                             <a href="{{ route('admin/lessons/show', $lesson->id) }}" class="btn btn-secondary">View</a>
                                             <a href="{{ route('admin/lessons/edit', $lesson->id) }}" class="btn btn-warning">Edit</a>
-                                            <a href="{{ route('admin/lessons/delete', $lesson->id) }}" class="btn btn-danger">Delete</a>
-                                        </div>
+                                            <form action="{{ route('admin/lessons/destroy', $lesson->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this lesson?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger ">Delete Lesson</button>
+                                            </form>                                        </div>
                                     </td>
                                 </tr>
                             @empty

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\VideoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,7 +42,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/{course}/lessons/create', [LessonController::class, 'create'])->name('admin/lessons/create');
     Route::post('/admin/{course}/lessons', [LessonController::class, 'store'])->name('admin/lessons/store');
     Route::get('/admin/lessons/{lesson}', [LessonController::class, 'show'])->name('admin/lessons/show');
-    Route::get('/admin/courses/lessons/{lesson}/edit', [LessonController::class, 'edit'])->name('admin/lessons/edit');
-    Route::delete('/admin/courses/lessons/{lesson}', [LessonController::class, 'destroy'])->name('admin/lessons/delete');
+    Route::get('/admin/lessons/{lesson}/edit', [LessonController::class, 'edit'])->name('admin/lessons/edit');
+    Route::put('/admin/lessons/{lesson}', [LessonController::class, 'update'])->name('admin/lessons/update');
+    Route::delete('/admin/lessons/{lesson}', [LessonController::class, 'destroy'])->name('admin/lessons/destroy');
+
+    Route::get('/admin/lessons/{lesson}/videos/create', [VideoController::class, 'create'])->name('admin/lessons/videos/create');
+    Route::post('/admin/lessons/{lesson}/videos', [VideoController::class, 'store'])->name('admin/lessons/videos/store');
 
 });

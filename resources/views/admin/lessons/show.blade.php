@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Lesson Details: ') }} {{ $lesson->title }}
-        </h2>
+        
 
         <nav class="space-x-4">
             <a href="{{ route('admin/courses') }}" class="text-gray-800 hover:underline">Courses</a>
@@ -10,6 +8,9 @@
             <a href="{{ route('admin/users')}}" class="text-gray-800 hover:underline">Users</a>
 
         </nav>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Lesson Details: ') }} {{ $lesson->title }}
+        </h2>
     </x-slot>
 
     <div class="py-12">
@@ -23,7 +24,13 @@
                     <h2>Videos:</h2>
                     <ul>
                         @foreach($lesson->videos as $video)
-                            <li>{{ $video->title }} - <a href="{{ $video->url }}" target="_blank">Watch</a></li>
+                            <li>
+                                <strong>{{ $video->title }}</strong> - 
+                                <video controls width="320" height="240">
+                                    <source src="{{ asset('storage/' . $video->url) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </li>
                         @endforeach
                     </ul>
 
@@ -34,6 +41,8 @@
                     @else
                         <p>No quiz available for this lesson.</p>
                     @endif
+
+                    <a href="{{ route('admin/lessons/videos/create', $lesson->id) }}" class="btn btn-primary">Add Video</a>
 
                     <a href="{{ route('admin/courses/show', $lesson->course->id) }}" class="btn btn-primary">Back to Course</a>
                 </div>
