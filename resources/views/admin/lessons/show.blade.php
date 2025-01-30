@@ -17,7 +17,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h1>{{ $lesson->title }}</h1>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h1>{{ $lesson->title }}</h1>                        
+                        <a href="{{ route('admin/courses/show', $lesson->course->id) }}" class="btn btn-primary">Back to Course</a>
+                    </div> 
+                    
                     <p><strong>Description:</strong> {{ $lesson->description }}</p>
                     <p><strong>Order:</strong> {{ $lesson->order }}</p>
 
@@ -26,13 +30,16 @@
                         @foreach($lesson->videos as $video)
                             <li>
                                 <strong>{{ $video->title }}</strong> - 
-                                <video controls width="320" height="240">
+                                <video controls width="640" height="480">
                                     <source src="{{ asset('storage/' . $video->url) }}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
                             </li>
                         @endforeach
                     </ul>
+
+                    <a href="{{ route('admin/lessons/videos/create', $lesson->id) }}" class="btn btn-primary">Add Video</a>
+
 
                     @if($lesson->quiz)
                         <h2>Quiz:</h2>
@@ -42,9 +49,8 @@
                         <p>No quiz available for this lesson.</p>
                     @endif
 
-                    <a href="{{ route('admin/lessons/videos/create', $lesson->id) }}" class="btn btn-primary">Add Video</a>
 
-                    <a href="{{ route('admin/courses/show', $lesson->course->id) }}" class="btn btn-primary">Back to Course</a>
+
                 </div>
             </div>
         </div>
