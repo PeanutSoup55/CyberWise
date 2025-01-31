@@ -37,9 +37,9 @@
                     @if($lesson->quiz)
                         <h2>Quiz:</h2>
                         <p>{{ $lesson->quiz->title }}</p>
-                        <a href="{{ route('admin.courses.lessons.quizzes.show', $lesson->quiz->id) }}">Take Quiz</a>
+                        <a href="{{ route('admin/quizzes/show', $lesson->quiz->id) }}">Take Quiz</a>
                     @else
-                        <p>No quiz available for this lesson.</p>
+                        <a href="{{ route('admin/quizzes/create', $lesson->id) }}" class="btn btn-primary mt-4">Create Quiz</a>
                     @endif
 
 
