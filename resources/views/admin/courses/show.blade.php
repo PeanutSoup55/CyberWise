@@ -1,12 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
        
-        <nav class="space-x-4">
-            <a href="{{ route('admin/courses') }}" class="text-gray-800 hover:underline">Courses</a>
-            <a href="{{ route('admin/courses/create') }}" class="text-gray-800 hover:underline">Add Course</a>
-            <a href="{{ route('admin/users')}}" class="text-gray-800 hover:underline">Users</a>
-
-        </nav>
          <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Course Details') }}
         </h2>
