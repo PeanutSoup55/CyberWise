@@ -27,9 +27,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'admin'])->group(function () {
- 
+
     Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
- 
+
     Route::get('/admin/courses', [CourseController::class, 'index'])->name('admin.courses');
     Route::get('/admin/courses/create', [CourseController::class, 'create'])->name('admin.courses.create');
     Route::post('/admin/courses/save', [CourseController::class, 'save'])->name('admin.courses.save');
@@ -58,7 +58,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/quizzes/{quiz}', [QuizController::class, 'show'])->name('admin.quizzes.show');
     Route::post('/admin/quizzes/{quiz}/submit', [QuizController::class, 'submit'])->name('admin.quizzes.submit');
 
-    Route::get('/admin/quizzes/{quiz}/questions/create', [QuestionController::class, 'create'])->name('admin.questions.create');
-    Route::post('/admin/quizzes/{quiz}/questions', [QuestionController::class, 'store'])->name('admin.questions.store');
+    Route::get('/admin/lessons/quizzes/{quiz}/questions/create', [QuestionController::class, 'create'])->name('admin.questions.create');
+    Route::get('/admin/lessons/quizzes/{quiz}/questions/show', [QuestionController::class, 'show'])->name('admin.questions.show');
+    Route::post('/admin/lessons/quizzes/{quiz}/questions', [QuestionController::class, 'store'])->name('admin.questions.store');
 
 });

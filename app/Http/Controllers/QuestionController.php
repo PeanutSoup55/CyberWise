@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
     public function create(Quiz $quiz)
-    {
-        return view('admin.questions.create', compact('quiz'));
+    { //you can make this smaller/more compact by taking questions views out of the quiz folder :P
+        return view('admin.lessons.quizzes.questions.create', compact('quiz'));
     }
 
     public function store(Request $request, Quiz $quiz)
