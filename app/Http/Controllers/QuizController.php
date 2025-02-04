@@ -10,7 +10,7 @@ class QuizController extends Controller
 {
     public function create(Lesson $lesson)
     {
-        return view('admin.lessons.quizzes.create', compact('lesson'));
+        return view('admin/quizzes/create', compact('lesson'));
     }
 
     public function store(Request $request, Lesson $lesson)
