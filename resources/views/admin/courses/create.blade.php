@@ -18,9 +18,9 @@
                         {{session('error')}}
                     </div>
                     @endif
-                    <p><a href="{{ route('admin/courses') }}" class="btn btn-primary">Go Back</a></p>
+                    <p><a href="{{ route('admin.courses') }}" class="btn btn-primary">Go Back</a></p>
  
-                    <form action="{{ route('admin/courses/save') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.courses.save') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
                             <div class="col">

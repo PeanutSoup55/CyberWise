@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <h1>Add Video</h1>
 
-                    <form action="{{ route('admin/lessons/videos/store', $lesson->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.lessons.videos.store', $lesson->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-4">
@@ -35,7 +35,7 @@
                         <button type="submit" class="btn btn-primary">Save Video</button>
                     </form>
 
-                    <a href="{{ route('admin/lessons/show', $lesson->id) }}" class="btn btn-secondary mt-4">Back to Lesson</a>
+                    <a href="{{ route('admin.lessons.show', $lesson->id) }}" class="btn btn-secondary mt-4">Back to Lesson</a>
                 </div>
             </div>
         </div>

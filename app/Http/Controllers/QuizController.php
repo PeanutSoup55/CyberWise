@@ -10,7 +10,7 @@ class QuizController extends Controller
 {
     public function create(Lesson $lesson)
     {
-        return view('admin/quizzes/create', compact('lesson'));
+        return view('admin.lessons.quizzes.create', compact('lesson'));
     }
 
     public function store(Request $request, Lesson $lesson)
@@ -25,12 +25,12 @@ class QuizController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin/quizzes/show', $quiz->id)->with('success', 'Quiz created!');
+        return redirect()->route('admin.lessons.quizzes.show', $quiz->id)->with('success', 'Quiz created!');
     }
 
     public function show(Quiz $quiz)
     {
-        return view('admin/quizzes/show', compact('quiz'));
+        return view('admin.lessons.quizzes.show', compact('quiz'));
     }
 
     public function submit(Request $request, Quiz $quiz)
@@ -46,6 +46,6 @@ class QuizController extends Controller
 
         $percentage = ($score / $totalQuestions) * 100;
 
-        return view('admin/quizzes/result', compact('score', 'totalQuestions', 'percentage', 'quiz'));
+        return view('admin.quizzes.result', compact('score', 'totalQuestions', 'percentage', 'quiz'));
     }
 }

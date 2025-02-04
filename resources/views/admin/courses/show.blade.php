@@ -12,14 +12,14 @@
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
                         <h1>{{ $course->name }}</h1>
-                        <a href="{{ route('admin/lessons/create', $course->id) }}" class="btn btn-primary">Add Lesson</a>
+                        <a href="{{ route('admin.lessons.create', $course->id) }}" class="btn btn-primary">Add Lesson</a>
                     </div> 
                     
                     <p><strong>Description:</strong> {{ $course->description }}</p>
                     <p><strong>Difficulty:</strong> {{ $course->difficulty }}</p>
                     <p><strong>Order:</strong> {{ $course->order }}</p>
 
-                    <a href="{{ route('admin/courses') }}" class="btn btn-primary">Back to Courses</a>
+                    <a href="{{ route('admin.courses') }}" class="btn btn-primary">Back to Courses</a>
 
 
                     <h2 style="margin-top: 20px">Lessons:</h2>
@@ -42,9 +42,9 @@
                                     <td class="align-middle">{{ $lesson->order }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <a href="{{ route('admin/lessons/show', $lesson->id) }}" class="btn btn-secondary">View</a>
-                                            <a href="{{ route('admin/lessons/edit', $lesson->id) }}" class="btn btn-warning">Edit</a>
-                                            <form action="{{ route('admin/lessons/destroy', $lesson->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this lesson?');">
+                                            <a href="{{ route('admin.lessons.show', $lesson->id) }}" class="btn btn-secondary">View</a>
+                                            <a href="{{ route('admin.lessons.edit', $lesson->id) }}" class="btn btn-warning">Edit</a>
+                                            <form action="{{ route('admin.lessons.destroy', $lesson->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this lesson?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger ">Delete Lesson</button>

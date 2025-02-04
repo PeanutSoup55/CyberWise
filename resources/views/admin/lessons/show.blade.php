@@ -12,7 +12,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
                         <h1>{{ $lesson->title }}</h1>                        
-                        <a href="{{ route('admin/courses/show', $lesson->course->id) }}" class="btn btn-primary">Back to Course</a>
+                        <a href="{{ route('admin.courses.show', $lesson->course->id) }}" class="btn btn-primary">Back to Course</a>
                     </div> 
                     
                     <p><strong>Description:</strong> {{ $lesson->description }}</p>
@@ -31,15 +31,16 @@
                         @endforeach
                     </ul>
 
-                    <a href="{{ route('admin/lessons/videos/create', $lesson->id) }}" class="btn btn-primary">Add Video</a>
+                    <a href="{{ route('admin.lessons.videos.create', $lesson->id) }}" class="btn btn-primary">Add Video</a>
 
 
                     @if($lesson->quiz)
                         <h2>Quiz:</h2>
                         <p>{{ $lesson->quiz->title }}</p>
-                        <a href="{{ route('admin/quizzes/show', $lesson->quiz->id) }}">Take Quiz</a>
+                        <a href="{{ route('admin.quizzes.show', $lesson->quiz->id) }}">Take Quiz</a>
+                        <a href="{{ route('admin.questions.create', $lesson->quiz->id) }}">add question</a>
                     @else
-                        <a href="{{ route('admin/quizzes/create', $lesson->id) }}" class="btn btn-primary mt-4">Create Quiz</a>
+                        <a href="{{ route('admin.quizzes.create', $lesson->id) }}" class="btn btn-primary mt-4">Create Quiz</a>
                     @endif
 
 

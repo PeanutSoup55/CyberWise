@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white p-6 shadow rounded-lg">
-                <form action="{{ route('admin/quizzes/submit', $quiz->id) }}" method="POST">
+                <form action="{{ route('admin.quizzes.submit', $quiz->id) }}" method="POST">
                     @csrf
                     @foreach($quiz->questions as $question)
                         <div class="mb-4">

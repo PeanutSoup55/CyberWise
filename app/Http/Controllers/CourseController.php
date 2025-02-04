@@ -27,10 +27,10 @@ class CourseController extends Controller
         $data = Course::create($validation);
         if ($data) {
             session()->flash('success', 'Course Add Successfully');
-            return redirect(route('admin/courses'));
+            return redirect(route('admin.courses'));
         } else {
             session()->flash('error', 'Some problem occure');
-            return redirect(route('admin.courses/create'));
+            return redirect(route('admin.courses.create'));
         }
     }
     public function edit($id)
@@ -44,10 +44,10 @@ class CourseController extends Controller
         $courses = Course::findOrFail($id)->delete();
         if ($courses) {
             session()->flash('success', 'Course Deleted Successfully');
-            return redirect(route('admin/courses'));
+            return redirect(route('admin.courses'));
         } else {
             session()->flash('error', 'Course Not Delete successfully');
-            return redirect(route('admin/courses'));
+            return redirect(route('admin.courses'));
         }
     }
  
@@ -66,10 +66,10 @@ class CourseController extends Controller
         $data = $courses->save();
         if ($data) {
             session()->flash('success', 'Course Update Successfully');
-            return redirect(route('admin/courses'));
+            return redirect(route('admin.courses'));
         } else {
             session()->flash('error', 'Some problem occured');
-            return redirect(route('admin/courses/update'));
+            return redirect(route('admin.courses.update'));
         }
     }
 

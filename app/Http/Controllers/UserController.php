@@ -22,7 +22,7 @@ class UserController extends Controller
             return redirect(route('admin/users'));
         } else {
             session()->flash('error', 'User Not Delete successfully');
-            return redirect(route('admin/users'));
+            return redirect(route('admin.users'));
         }
     }
 }

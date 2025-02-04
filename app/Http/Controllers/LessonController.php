@@ -9,7 +9,7 @@ use App\Models\Lesson;
 class LessonController extends Controller
 {
     public function create(Course $course){
-        return view('admin/lessons/create', compact('course'));
+        return view('admin.lessons.create', compact('course'));
     }
 
     public function store(Request $request, Course $course){
@@ -21,17 +21,17 @@ class LessonController extends Controller
         $lesson = new Lesson($validated);
         $lesson->course()->associate($course);
         $lesson->save();
-        return redirect()->route('admin/courses/show', $course->id)->with('success', 'lesson added succesfully');
+        return redirect()->route('admin.courses.show', $course->id)->with('success', 'lesson added succesfully');
     }
     public function show(Lesson $lesson)
     {
         // The lesson will be passed to the view
-        return view('admin/lessons/show', compact('lesson'));
+        return view('admin.lessons.show', compact('lesson'));
     }
 
     public function edit(Lesson $lesson)
     {
-        return view('admin/lessons/edit', compact('lesson'));
+        return view('admin.lessons.edit', compact('lesson'));
     }
 
     // Update the lesson
@@ -52,7 +52,7 @@ class LessonController extends Controller
         ]);
 
         // Redirect to the lesson details page
-        return redirect()->route('admin/lessons/show', $lesson->id)->with('success', 'Lesson updated successfully!');
+        return redirect()->route('admin.lessons.show', $lesson->id)->with('success', 'Lesson updated successfully!');
     }
 
     public function destroy(Lesson $lesson)
@@ -61,6 +61,6 @@ class LessonController extends Controller
         $lesson->delete();
 
         // Redirect back to the course page with success message
-        return redirect()->route('admin/courses/show', $lesson->course_id)->with('success', 'Lesson deleted successfully!');
+        return redirect()->route('admin.courses.show', $lesson->course_id)->with('success', 'Lesson deleted successfully!');
     }
 }

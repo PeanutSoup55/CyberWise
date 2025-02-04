@@ -12,7 +12,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
                         <h1 class="mb-0">Courses</h1>
-                        <a href="{{ route('admin/courses/create') }}" class="btn btn-primary">Add Course</a>
+                        <a href="{{ route('admin.courses.create') }}" class="btn btn-primary">Add Course</a>
                     </div> 
                     <hr />
                     @if(Session::has('success'))
@@ -41,9 +41,9 @@
                                 <td class="align-middle">{{ $course->order }}</td>
                                 <td class="align-middle">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ route('admin/courses/show', ['id' => $course->id]) }}" class="btn btn-secondary">View</a>
-                                        <a href="{{ route('admin/courses/edit', ['id'=>$course->id]) }}" type="button" class="btn btn-warning">Edit</a>
-                                        <a href="{{ route('admin/courses/delete', ['id'=>$course->id]) }}" type="button" class="btn btn-danger">Delete</a>
+                                        <a href="{{ route('admin.courses.show', ['id' => $course->id]) }}" class="btn btn-secondary">View</a>
+                                        <a href="{{ route('admin.courses.edit', ['id'=>$course->id]) }}" type="button" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('admin.courses.delete', ['id'=>$course->id]) }}" type="button" class="btn btn-danger">Delete</a>
                                     </div>
                                 </td>
                             </tr>

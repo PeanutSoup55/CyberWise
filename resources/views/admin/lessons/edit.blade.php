@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <h1>Edit Lesson</h1>
 
-                    <form action="{{ route('admin/lessons/update', $lesson->id) }}" method="POST">
+                    <form action="{{ route('admin.lessons.update', $lesson->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -36,7 +36,7 @@
                         <button type="submit" class="btn btn-primary">Update Lesson</button>
                     </form>
 
-                    <a href="{{ route('admin/lessons/show', $lesson->id) }}" class="btn btn-secondary mt-4">Back to Lesson</a>
+                    <a href="{{ route('admin.lessons.show', $lesson->id) }}" class="btn btn-secondary mt-4">Back to Lesson</a>
                 </div>
             </div>
         </div>

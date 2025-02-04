@@ -12,7 +12,7 @@
                 <div class="p-6 text-gray-900">
                     <h1 class="mb-0">Edit Course</h1>
                     <hr />
-                    <form action="{{ route('admin/courses/update', $courses->id) }}" method="POST">
+                    <form action="{{ route('admin.courses.update', $courses->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="row">

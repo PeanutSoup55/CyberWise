@@ -10,7 +10,7 @@ class QuestionController extends Controller
 {
     public function create(Quiz $quiz)
     {
-        return view('admin/questions/create', compact('quiz'));
+        return view('admin.questions.create', compact('quiz'));
     }
 
     public function store(Request $request, Quiz $quiz)
@@ -28,6 +28,6 @@ class QuestionController extends Controller
             'correct_option' => $request->correct_option,
         ]);
 
-        return redirect()->route('admin/quizzes/show', $quiz->id)->with('success', 'Question added!');
+        return redirect()->route('admin.quizzes.show', $quiz->id)->with('success', 'Question added!');
     }
 }

@@ -12,7 +12,7 @@ use App\Models\User;
 class HomeController extends Controller
 {
     public function index(){
-        return view('/admin/dashboard', [
+        return view('admin.dashboard', [
             'totalCourses' => Course::count(),
             'totalLessons' => Lesson::count(),
             'totalVideos' => Video::count(),

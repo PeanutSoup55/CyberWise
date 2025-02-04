@@ -10,7 +10,7 @@ class VideoController extends Controller
 {
     public function create(Lesson $lesson)
     {
-        return view('admin/lessons/videos/create', compact('lesson'));
+        return view('admin.lessons.videos.create', compact('lesson'));
     }
 
     // Store the new video in the database
@@ -31,6 +31,6 @@ class VideoController extends Controller
             'order' => $request->order,
         ]);
 
-        return redirect()->route('admin/lessons/show', $lesson->id)->with('success', 'Video added successfully!');
+        return redirect()->route('admin.lessons.show', $lesson->id)->with('success', 'Video added successfully!');
     }
 }
