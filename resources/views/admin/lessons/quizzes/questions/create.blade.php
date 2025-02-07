@@ -12,7 +12,7 @@
                     @csrf
                     <div class="mb-4">
                         <label class="block text-gray-700">Question</label>
-                        <input type="text" name="question" class="w-full border p-2" required>
+                        <input type="text" name="question_text" class="w-full border p-2" required>
                     </div>
 
                     <div class="mb-4">
