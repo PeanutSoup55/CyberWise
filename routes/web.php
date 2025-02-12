@@ -55,8 +55,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/lessons/{lesson}/quizzes/create', [QuizController::class, 'create'])->name('admin.quizzes.create');
     Route::post('/admin/lessons/{lesson}/quizzes', [QuizController::class, 'store'])->name('admin.quizzes.store');
 
-    Route::get('/admin/quizzes/{quiz}', [QuizController::class, 'show'])->name('admin.quizzes.show');
-    Route::post('/admin/quizzes/{quiz}/submit', [QuizController::class, 'submit'])->name('admin.quizzes.submit');
+    Route::get('/admin/lessons/quizzes/{quiz}', [QuizController::class, 'show'])->name('admin.lessons.quizzes.show');
+    Route::post('/admin/lessons/quizzes/{quiz}/submit', [QuizController::class, 'submit'])->name('admin.lessons.quizzes.submit');
 
     Route::get('/admin/lessons/quizzes/{quiz}/questions/create', [QuestionController::class, 'create'])->name('admin.questions.create');
     Route::get('/admin/lessons/quizzes/{quiz}/questions/show', [QuestionController::class, 'show'])->name('admin.questions.show');
