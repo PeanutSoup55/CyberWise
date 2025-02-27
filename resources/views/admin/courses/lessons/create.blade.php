@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <!-- Lesson Creation Form -->
-                    <form action="{{ route('admin.lessons.store', $course->id) }}" method="POST">
+                    <form action="{{ route('admin.courses.lessons.store', $course->id) }}" method="POST">
                         @csrf
                         <div class="mb-4">
                             <label for="title" class="block text-sm font-medium text-gray-700">Lesson Title</label>

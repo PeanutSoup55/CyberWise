@@ -13,7 +13,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <h1 class="mb-0">Courses</h1>
                         <a href="{{ route('admin.courses.create') }}" class="btn btn-primary">Add Course</a>
-                    </div> 
+                    </div>
                     <hr />
                     @if(Session::has('success'))
                         <div class="alert alert-success" role="alert">
@@ -37,13 +37,13 @@
                                 <td class="align-middle">{{ $loop->iteration }}</td>
                                 <td class="align-middle">{{ $course->name }}</td>
                                 <td class="align-middle">{{ $course->description }}</td>
-                                <td class="align-middle">{{ $course->difficulty }}</td>        
+                                <td class="align-middle">{{ $course->difficulty }}</td>
                                 <td class="align-middle">{{ $course->order }}</td>
                                 <td class="align-middle">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ route('admin.courses.show', ['id' => $course->id]) }}" class="btn btn-secondary">View</a>
-                                        <a href="{{ route('admin.courses.edit', ['id'=>$course->id]) }}" type="button" class="btn btn-warning">Edit</a>
-                                        <a href="{{ route('admin.courses.delete', ['id'=>$course->id]) }}" type="button" class="btn btn-danger">Delete</a>
+                                        <a href="{{ route('admin.courses.show', $course) }}" class="btn btn-secondary">View</a>
+                                        <a href="{{ route('admin.courses.edit', $course) }}" type="button" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('admin.courses.destroy', $course) }}" type="button" class="btn btn-danger">Delete</a>
                                     </div>
                                 </td>
                             </tr>
@@ -53,7 +53,7 @@
                             </tr>
                             @endforelse
                         </tbody>
-                    </table>              
+                    </table>
                 </div>
             </div>
         </div>

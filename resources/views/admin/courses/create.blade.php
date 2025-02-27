@@ -6,7 +6,7 @@
             {{ __('Create Course') }}
         </h2>
     </x-slot>
- 
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -18,9 +18,9 @@
                         {{session('error')}}
                     </div>
                     @endif
-                    <p><a href="{{ route('admin.courses') }}" class="btn btn-primary">Go Back</a></p>
- 
-                    <form action="{{ route('admin.courses.save') }}" method="POST" enctype="multipart/form-data">
+                    <p><a href="{{ route('admin.courses.index') }}" class="btn btn-primary">Go Back</a></p>
+
+                    <form action="{{ route('admin.courses.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
                             <div class="col">
@@ -46,7 +46,7 @@
                                 @enderror
                             </div>
                         </div>
- 
+
                         <div class="row mb-3">
                             <div class="col">
                                 <input type="text" name="order" class="form-control" placeholder="Order">

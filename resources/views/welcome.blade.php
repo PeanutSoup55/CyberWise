@@ -15,7 +15,7 @@
     <body class="font-sans antialiased dark:text-white/50 flex items-center justify-center min-h-screen bg-gray-100">
 
         <div class="w-full max-w-7xl bg-white p-12 rounded-lg shadow-lg flex items-center justify-between h-[80vh]">
-            
+
         <!-- Left: Image Section -->
         <div class="w-1/2 flex justify-center">
             <img src="{{ asset('images/cw.jpg') }}" alt="Logo" class="w-90 h-90 object-contain">
@@ -28,8 +28,8 @@
             @if (Route::has('login'))
                 <div class="space-y-4">
                     @auth
-                        <a href="{{ route('admin.dashboard') }}" class="block bg-blue-500 text-white py-2 px-4 rounded-lg w-full">Dashboard</a>
-                       
+                        <a href="{{ route('dashboard') }}" class="block bg-blue-500 text-white py-2 px-4 rounded-lg w-full">Dashboard</a>
+
                     @else
                         <a href="{{ route('login') }}" class="block bg-green-500 text-white py-2 px-4 rounded-lg w-full">Login</a>
 

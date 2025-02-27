@@ -10,7 +10,7 @@ class QuizController extends Controller
 {
     public function create(Lesson $lesson)
     {
-        return view('admin/lessons/quizzes/create', compact('lesson'));
+        return view('admin.courses.lessons.quizzes.create', compact('lesson'));
     }
 
     public function store(Request $request, Lesson $lesson)
@@ -25,7 +25,7 @@ class QuizController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin.lessons.quizzes.show', $quiz->id)->with('success', 'Quiz created!');
+        return redirect()->route('admin.lessons.quizzes.show', $quiz)->with('success', 'Quiz created!');
     }
 
     public function show(Quiz $quiz)
@@ -39,7 +39,7 @@ class QuizController extends Controller
         $totalQuestions = $quiz->questions->count();
 
         foreach ($quiz->questions as $question) {
-            if ($request->answers[$question->id] === $question->correct_option) {
+            if ($request->answers[$question] === $question->correct_option) {
                 $score++;
             }
         }

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-  
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Lesson Details: ') }} {{ $lesson->title }}
         </h2>
@@ -11,10 +11,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h1>{{ $lesson->title }}</h1>                        
-                        <a href="{{ route('admin.courses.show', $lesson->course->id) }}" class="btn btn-primary">Back to Course</a>
-                    </div> 
-                    
+                        <h1>{{ $lesson->title }}</h1>
+                        <a href="{{ route('admin.courses.show', $lesson->course_id) }}" class="btn btn-primary">Back to Course</a>
+                    </div>
+
                     <p><strong>Description:</strong> {{ $lesson->description }}</p>
                     <p><strong>Order:</strong> {{ $lesson->order }}</p>
 
@@ -22,7 +22,7 @@
                     <ul>
                         @foreach($lesson->videos as $video)
                             <li>
-                                <strong>{{ $video->title }}</strong> - 
+                                <strong>{{ $video->title }}</strong> -
                                 <video controls width="640" height="480">
                                     <source src="{{ asset('storage/' . $video->url) }}" type="video/mp4">
                                     Your browser does not support the video tag.
@@ -31,16 +31,16 @@
                         @endforeach
                     </ul>
 
-                    <a href="{{ route('admin.lessons.videos.create', $lesson->id) }}" class="btn btn-primary">Add Video</a>
+                    <a href="{{ route('admin.lessons.videos.create', $lesson) }}" class="btn btn-primary">Add Video</a>
 
 
                     @if($lesson->quiz)
                         <h2>Quiz:</h2>
                         <p>{{ $lesson->quiz->title }}</p>
-                        <a href="{{ route('admin.quizzes.show', $lesson->quiz->id) }}">Take Quiz</a>
-                        <a href="{{ route('admin.questions.create', $lesson->quiz->id) }}">add question</a>
+                        <a href="{{ route('admin.lessons.quizzes.show', [$lesson->id, $lesson->quiz->id]) }}">Take Quiz</a>
+                        <a href="{{ route('admin.quizzes.questions.create', [$lesson->id, $lesson->quiz->id]) }}">add question</a>
                     @else
-                        <a href="{{ route('admin.quizzes.create', $lesson->id) }}" class="btn btn-primary mt-4">Create Quiz</a>
+                        <a href="{{ route('admin.lessons.quizzes.create', $lesson) }}" class="btn btn-primary mt-4">Create Quiz</a>
                     @endif
 
 

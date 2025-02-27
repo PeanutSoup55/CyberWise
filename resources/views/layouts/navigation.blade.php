@@ -13,8 +13,8 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex ">
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" class="no-underline">{{ __('Analytics') }}</x-nav-link>
-                    <x-nav-link :href="route('admin.courses')" :active="request()->routeIs('admin.courses')" class="no-underline">{{ __('Courses')}}</x-nav-link>
-                    <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')" class="no-underline">{{ __('Users')}}</x-nav-link>
+                    <x-nav-link :href="route('admin.courses.index')" :active="request()->routeIs('admin.courses.index')" class="no-underline">{{ __('Courses')}}</x-nav-link>
+                    <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')" class="no-underline">{{ __('Users')}}</x-nav-link>
                 </div>
             </div>
 
