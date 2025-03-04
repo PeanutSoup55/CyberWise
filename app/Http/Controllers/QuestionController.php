@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
     public function create(Quiz $quiz)
-    { //you can make this smaller/more compact by taking questions views out of the quiz folder :P
-        return view('admin.lessons.quizzes.questions.create', compact('quiz'));
+    {
+        return view('admin.courses.lessons.quizzes.questions.create', compact('quiz'));
     }
 
     public function store(Request $request, Quiz $quiz)
     {
+        //dd($request->all());
         $request->validate([
             'question' => 'required|string',
             'options' => 'required|array|min:2',

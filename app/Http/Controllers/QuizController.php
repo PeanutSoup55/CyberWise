@@ -19,18 +19,19 @@ class QuizController extends Controller
             'title' => 'required|string|max:255',
         ]);
 
-        $quiz = Quiz::create([
-            'lesson_id' => $lesson->id,
+        $quiz = $lesson->quiz()->create([
             'title' => $request->title,
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin.lessons.quizzes.show', $quiz)->with('success', 'Quiz created!');
+        return redirect()->route('admin.lessons.quizzes.show', ['lesson' => $lesson->id, 'quiz' => $quiz->id])->with('success', 'Quiz created!');
     }
 
-    public function show(Quiz $quiz)
+    public function show(Lesson $lesson,Quiz $quiz)
     {
-        return view('admin.lessons.quizzes.show', compact('quiz'));
+        $quiz->load('questions');
+
+        return view('admin.courses.lessons.quizzes.show', compact('quiz', 'lesson'));
     }
 
     public function submit(Request $request, Quiz $quiz)
@@ -39,12 +40,12 @@ class QuizController extends Controller
         $totalQuestions = $quiz->questions->count();
 
         foreach ($quiz->questions as $question) {
-            if ($request->answers[$question] === $question->correct_option) {
+            if (isset($request->answers[$question->id]) && $request->answers[$question->id] === $question->correct_option) {
                 $score++;
             }
         }
 
-        $percentage = ($score / $totalQuestions) * 100;
+        $percentage = $totalQuestions > 0 ? ($score / $totalQuestions) * 100: 0;
 
         return view('admin.quizzes.result', compact('score', 'totalQuestions', 'percentage', 'quiz'));
     }
