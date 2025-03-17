@@ -74,4 +74,9 @@ class LessonController extends Controller
             ->route('admin.courses.show', $lesson->course_id)
             ->with('success', 'Lesson deleted successfully!');
     }
+
+    public function manageQuizzes(Lesson $lesson){
+        $lesson->load('quizzes');
+        return view('admin.courses.lessons.quizzes.manage', compact('lesson'));
+    }
 }

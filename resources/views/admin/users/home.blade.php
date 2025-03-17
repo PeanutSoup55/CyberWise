@@ -1,3 +1,7 @@
+@extends('layouts.admin')
+
+@section('content')
+
 <x-app-layout>
     <x-slot name="header">
 
@@ -50,3 +54,5 @@
         </div>
     </div>
 </x-app-layout>
+
+@endsection

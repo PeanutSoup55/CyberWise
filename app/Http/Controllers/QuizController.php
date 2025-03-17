@@ -24,9 +24,28 @@ class QuizController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin.lessons.quizzes.show', ['lesson' => $lesson->id, 'quiz' => $quiz->id])->with('success', 'Quiz created!');
+        return redirect()->route('admin.lessons.quizzes.edit', ['lesson' => $lesson->id, 'quiz' => $quiz->id])->with('success', 'Quiz created!');
     }
 
+    public function edit(Lesson $lesson, Quiz $quiz){
+        $quiz->load('questions');
+        return view('admin.courses.lessons.quizzes.edit', compact('quiz', 'lesson'));
+    }
+
+    public function update(Request $request, Lesson $lesson, Quiz $quiz){
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $quiz->update([
+           'title' => $request->title,
+           'description' => $request->description,
+        ]);
+
+        return redirect()->route('admin.lessons.show', ['lesson' => $lesson->id, 'quiz' => $quiz->id])
+            ->with('success', 'Quiz updated! you can now add or edit questions');
+    }
     public function show(Lesson $lesson,Quiz $quiz)
     {
         $quiz->load('questions');

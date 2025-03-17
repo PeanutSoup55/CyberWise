@@ -82,7 +82,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('/admin/lessons/{lesson}/videos', [VideoController::class, 'store'])->name('admin.lessons.videos.store'); */
 
     //QUIZ ROUTES (resource routes for managing quizzes from within lessons)
-    Route::resource('lessons.quizzes', QuizController::class)->only(['create', 'show', 'store']);
+    Route::resource('lessons.quizzes', QuizController::class)->only(['create', 'show', 'store', 'edit', 'update', 'destroy']);
     Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
 
     /*

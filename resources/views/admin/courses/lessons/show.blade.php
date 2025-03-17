@@ -1,4 +1,9 @@
-<x-app-layout>
+@extends('layouts.admin')
+
+@section('content')
+
+
+    <x-app-layout>
     <x-slot name="header">
 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -34,14 +39,33 @@
                     <a href="{{ route('admin.lessons.videos.create', $lesson) }}" class="btn btn-primary">Add Video</a>
 
 
-                    @if($lesson->quiz)
-                        <h2>Quiz:</h2>
-                        <p>{{ $lesson->quiz->title }}</p>
-                        <a href="{{ route('admin.lessons.quizzes.show', [$lesson->id, $lesson->quiz->id]) }}">Take Quiz</a>
-                        <a href="{{ route('admin.quizzes.questions.create', [$lesson->id, $lesson->quiz->id]) }}">add question</a>
-                    @else
-                        <a href="{{ route('admin.lessons.quizzes.create', $lesson) }}" class="btn btn-primary mt-4">Create Quiz</a>
-                    @endif
+                    <div class="mt-8 p-6 bg-white shadow rounded-lg">
+                        <h2 class="text-xl font-bold mb-4">Lesson Quiz</h2>
+
+                        @if($lesson->quiz)
+                            <div class="border p-4 rounded-lg bg-gray-100">
+                                <p class="text-lg font-medium">{{ $lesson->quiz->title }}</p>
+                                <p class="text-sm text-gray-600">{{ $lesson->quiz->description ?? 'No description provided.' }}</p>
+
+                                <div class="mt-4 flex space-x-3">
+                                    <a href="{{ route('admin.lessons.quizzes.show', [$lesson->id, $lesson->quiz->id]) }}" class="btn btn-secondary">Take Quiz</a>
+                                    <a href="{{ route('admin.lessons.quizzes.edit', [$lesson->id, $lesson->quiz->id]) }}" class="btn btn-warning">Manage Quiz</a>
+
+                                    <form action="{{ route('admin.lessons.quizzes.destroy', [$lesson->id, $lesson->quiz->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this quiz?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete Quiz</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @else
+                            <p class="text-gray-600">No quiz exists for this lesson.</p>
+                            <a href="{{ route('admin.lessons.quizzes.create', $lesson) }}" class="btn btn-primary mt-4">Create Quiz</a>
+                        @endif
+                    </div>
+
+
+                    <a href="{{ route('admin.lessons.quizzes.create', $lesson) }}" class="btn btn-primary mt-3">Create Quiz</a>
 
 
 
@@ -50,3 +74,5 @@
         </div>
     </div>
 </x-app-layout>
+
+@endsection

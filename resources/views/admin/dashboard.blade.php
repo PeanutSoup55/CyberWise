@@ -1,3 +1,7 @@
+@extends('layouts.admin')
+
+@section('content')
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -14,19 +18,19 @@
                     <h3 class="text-lg font-semibold">Total Courses</h3>
                     <p class="text-2xl font-bold">{{ $totalCourses }}</p>
                 </div>
-                
+
                 <!-- Total Lessons -->
                 <div class="bg-white p-6 shadow rounded-lg text-center">
                     <h3 class="text-lg font-semibold">Total Lessons</h3>
                     <p class="text-2xl font-bold">{{ $totalLessons }}</p>
                 </div>
-                
+
                 <!-- Total Videos -->
                 <div class="bg-white p-6 shadow rounded-lg text-center">
                     <h3 class="text-lg font-semibold">Total Videos</h3>
                     <p class="text-2xl font-bold">{{ $totalVideos }}</p>
                 </div>
-                
+
                 <!-- Total Quizzes -->
                 <div class="bg-white p-6 shadow rounded-lg text-center">
                     <h3 class="text-lg font-semibold">Total Quizzes</h3>
@@ -43,3 +47,5 @@
         </div>
     </div>
 </x-app-layout>
+
+@endsection
