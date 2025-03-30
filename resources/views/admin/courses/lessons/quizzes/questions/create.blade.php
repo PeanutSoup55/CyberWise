@@ -1,41 +1,39 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('title', 'Add Question to ' . $quiz->title)
 
+@section('admin-content')
+    <div class="container py-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
 
-    <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ 'questions.create' . ('Add Question to ') . $quiz->title }}
-        </h2>
-    </x-slot>
+                <h1 class="h5 mb-4">Add Question to: <strong>{{ $quiz->title }}</strong></h1>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white p-6 shadow rounded-lg">
                 <form action="{{ route('admin.quizzes.questions.store', $quiz) }}" method="POST">
                     @csrf
-                    <div class="mb-4">
-                        <label class="block text-gray-700">Question</label>
-                        <input type="text" name="question_text" class="w-full border p-2" required>
+
+                    <div class="mb-3">
+                        <label for="question_text" class="form-label">Question</label>
+                        <input type="text" name="question_text" id="question_text" class="form-control" required>
                     </div>
 
-                    <div class="mb-4">
-                        <label class="block text-gray-700">Options</label>
+                    <div class="mb-3">
+                        <label class="form-label">Options</label>
                         <div id="options-container">
-                            <input type="text" name="options[]" class="w-full border p-2 mb-2" required>
-                            <input type="text" name="options[]" class="w-full border p-2 mb-2" required>
+                            <input type="text" name="options[]" class="form-control mb-2" required>
+                            <input type="text" name="options[]" class="form-control mb-2" required>
                         </div>
-                        <button type="button" onclick="addOption()" class="btn btn-secondary">Add Option</button>
+                        <button type="button" onclick="addOption()" class="btn btn-outline-secondary btn-sm mt-2">Add Option</button>
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700">Correct Answer</label>
-                        <input type="text" name="correct_option" class="w-full border p-2" required>
+                        <label for="correct_option" class="form-label">Correct Answer</label>
+                        <input type="text" name="correct_option" id="correct_option" class="form-control" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Add Question</button>
                 </form>
+
             </div>
         </div>
     </div>
@@ -46,10 +44,8 @@
             let input = document.createElement('input');
             input.type = 'text';
             input.name = 'options[]';
-            input.classList.add('w-full', 'border', 'p-2', 'mb-2');
+            input.className = 'form-control mb-2';
             container.appendChild(input);
         }
     </script>
-</x-app-layout>
-
 @endsection

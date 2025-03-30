@@ -1,36 +1,38 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('title', 'Take Quiz: ' . $quiz->title)
 
+@section('admin-content')
+    <div class="container py-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
 
-    <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Take Quiz: ') . $quiz->title }}
-        </h2>
-    </x-slot>
+                <h1 class="h5 mb-4">Take Quiz: <strong>{{ $quiz->title }}</strong></h1>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white p-6 shadow rounded-lg">
                 <form action="{{ route('admin.quizzes.submit', $quiz->id) }}" method="POST">
                     @csrf
+
                     @foreach($quiz->questions as $question)
                         <div class="mb-4">
-                            <p class="font-semibold">{{ $question->question }}</p>
+                            <p class="fw-semibold">{{ $question->question }}</p>
                             @foreach(json_decode($question->options) as $option)
-                                <label class="block">
-                                    <input type="radio" name="answers[{{ $question->id }}]" value="{{ $option }}" required>
-                                    {{ $option }}
-                                </label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"
+                                           name="answers[{{ $question->id }}]"
+                                           value="{{ $option }}"
+                                           id="q{{ $question->id }}_{{ $loop->index }}" required>
+                                    <label class="form-check-label" for="q{{ $question->id }}_{{ $loop->index }}">
+                                        {{ $option }}
+                                    </label>
+                                </div>
                             @endforeach
                         </div>
                     @endforeach
-                    <button type="submit" class="btn btn-primary">Submit Quiz</button>
+
+                    <button type="submit" class="btn btn-primary mt-3">Submit Quiz</button>
                 </form>
+
             </div>
         </div>
     </div>
-</x-app-layout>
-
 @endsection

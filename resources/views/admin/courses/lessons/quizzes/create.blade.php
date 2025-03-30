@@ -1,27 +1,24 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('title', 'Create Quiz for Lesson: ' . $lesson->title)
 
+@section('admin-content')
+    <div class="container py-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="h5 mb-4">Create Quiz for Lesson: <strong>{{ $lesson->title }}</strong></h1>
 
-    <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create Quiz for Lesson: ') . $lesson->title }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white p-6 shadow rounded-lg">
                 <form action="{{ route('admin.lessons.quizzes.store', $lesson) }}" method="POST">
                     @csrf
-                    <div class="mb-4">
-                        <label class="block text-gray-700">Quiz Title</label>
-                        <input type="text" name="title" class="w-full border p-2" required>
+
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Quiz Title</label>
+                        <input type="text" name="title" id="title" class="form-control" required>
                     </div>
+
                     <div class="mb-4">
-                        <label class="block text-gray-700">Description</label>
-                        <input type="text" name="description" class="w-full border p-2" required>
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" name="description" id="description" class="form-control" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Create Quiz</button>
@@ -29,6 +26,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
-
 @endsection

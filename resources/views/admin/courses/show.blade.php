@@ -1,75 +1,63 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('title', 'Course Details')
 
+@section('admin-content')
+    <div class="container py-4">
 
-    <x-app-layout>
-    <x-slot name="header">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="h4 mb-0">{{ $course->name }}</h1>
+            <a href="{{ route('admin.courses.lessons.create', $course) }}" class="btn btn-primary">Add Lesson</a>
+        </div>
 
-         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Course Details') }}
-        </h2>
-    </x-slot>
+        <p><strong>Description:</strong> {{ $course->description }}</p>
+        <p><strong>Difficulty:</strong> {{ $course->difficulty }}</p>
+        <p><strong>Order:</strong> {{ $course->order }}</p>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h1>{{ $course->name }}</h1>
-                        <a href="{{ route('admin.courses.lessons.create', $course) }}" class="btn btn-primary">Add Lesson</a>
-                    </div>
+        <a href="{{ route('admin.courses.index') }}" class="btn btn-secondary mb-4">Back to Courses</a>
 
-                    <p><strong>Description:</strong> {{ $course->description }}</p>
-                    <p><strong>Difficulty:</strong> {{ $course->difficulty }}</p>
-                    <p><strong>Order:</strong> {{ $course->order }}</p>
+        <h2 class="h5 mb-3">Lessons</h2>
 
-                    <a href="{{ route('admin.courses.index') }}" class="btn btn-primary">Back to Courses</a>
-
-
-                    <h2 style="margin-top: 20px">Lessons:</h2>
-                    <table class="table table-hover">
-                        <thead class="table-primary">
-                            <tr>
-                                <th>#</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Order</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($course->lessons as $lesson)
-                                <tr>
-                                    <td class="align-middle">{{ $loop->iteration }}</td>
-                                    <td class="align-middle">{{ $lesson->title }}</td>
-                                    <td class="align-middle">{{ $lesson->description }}</td>
-                                    <td class="align-middle">{{ $lesson->order }}</td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <a href="{{ route('admin.lessons.show', $lesson) }}" class="btn btn-secondary">View</a>
-                                            <a href="{{ route('admin.lessons.edit', $lesson) }}" class="btn btn-warning">Edit</a>
-                                            <form action="{{ route('admin.lessons.destroy', $lesson) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this lesson?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger ">Delete Lesson</button>
-                                            </form>                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center">No lessons available for this course.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-
-
-
-                </div>
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-primary">
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Order</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse($course->lessons as $lesson)
+                        <tr>
+                            <td class="align-middle">{{ $loop->iteration }}</td>
+                            <td class="align-middle">{{ $lesson->title }}</td>
+                            <td class="align-middle">{{ $lesson->description }}</td>
+                            <td class="align-middle">{{ $lesson->order }}</td>
+                            <td class="align-middle">
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('admin.lessons.show', $lesson) }}" class="btn btn-secondary">View</a>
+                                    <a href="{{ route('admin.lessons.edit', $lesson) }}" class="btn btn-warning">Edit</a>
+                                    <form action="{{ route('admin.lessons.destroy', $lesson) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this lesson?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete Lesson</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center">No lessons available for this course.</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
-</x-app-layout>
 
+    </div>
 @endsection

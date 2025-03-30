@@ -10,8 +10,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('id', 'desc')->get();
-        $total = User::count(); 
-        return view('admin.users.home', compact('users', 'total'));
+        $total = User::count();
+        return view('admin.users.index', compact('users', 'total'));
     }
 
     public function delete($id)

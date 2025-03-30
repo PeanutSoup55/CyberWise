@@ -39,7 +39,7 @@ class LessonController extends Controller
     //EDIT LESSON FORM
     public function edit(Lesson $lesson)
     {
-        return view('admin.courses.lessons.update', compact('lesson'));
+        return view('admin.courses.lessons.edit', compact('lesson'));
     }
 
     //UPDATE THE LESSON

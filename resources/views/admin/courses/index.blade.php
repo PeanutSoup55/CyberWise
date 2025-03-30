@@ -1,68 +1,62 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('title', 'Admin Courses')
 
+@section('admin-content')
+    <div class="container py-4">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h1 class="h4 mb-0">Courses</h1>
+            <a href="{{ route('admin.courses.create') }}" class="btn btn-primary">Add Course</a>
+        </div>
 
-    <x-app-layout>
-    <x-slot name="header">
+        @if(Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('success') }}
+            </div>
+        @endif
 
-         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin Courses') }}
-        </h2>
-    </x-slot>
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead class="table-primary">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Difficulty</th>
+                        <th>Order</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse ($courses as $course)
+                        <tr>
+                            <td class="align-middle">{{ $loop->iteration }}</td>
+                            <td class="align-middle">{{ $course->name }}</td>
+                            <td class="align-middle">{{ $course->description }}</td>
+                            <td class="align-middle">{{ $course->difficulty }}</td>
+                            <td class="align-middle">{{ $course->order }}</td>
+                            <td class="align-middle">
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('admin.courses.show', $course) }}" class="btn btn-secondary">View</a>
+                                    <a href="{{ route('admin.courses.edit', $course) }}" class="btn btn-warning">Edit</a>
+                                    <form action="{{ route('admin.courses.destroy', $course) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this course?');" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h1 class="mb-0">Courses</h1>
-                        <a href="{{ route('admin.courses.create') }}" class="btn btn-primary">Add Course</a>
-                    </div>
-                    <hr />
-                    @if(Session::has('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ Session::get('success') }}
-                        </div>
-                    @endif
-                    <table class="table table-hover">
-                        <thead class="table-primary">
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Difficulty</th>
-                                <th>Order</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($courses as $course)
-                            <tr>
-                                <td class="align-middle">{{ $loop->iteration }}</td>
-                                <td class="align-middle">{{ $course->name }}</td>
-                                <td class="align-middle">{{ $course->description }}</td>
-                                <td class="align-middle">{{ $course->difficulty }}</td>
-                                <td class="align-middle">{{ $course->order }}</td>
-                                <td class="align-middle">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ route('admin.courses.show', $course) }}" class="btn btn-secondary">View</a>
-                                        <a href="{{ route('admin.courses.edit', $course) }}" type="button" class="btn btn-warning">Edit</a>
-                                        <a href="{{ route('admin.courses.destroy', $course) }}" type="button" class="btn btn-danger">Delete</a>
-                                    </div>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                            <td class="text-center" colspan="5">Course not found</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td class="text-center" colspan="6">No courses found.</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-</x-app-layout>
-
 @endsection

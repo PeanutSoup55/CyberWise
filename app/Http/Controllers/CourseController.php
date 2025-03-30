@@ -51,7 +51,7 @@ class CourseController extends Controller
     //COURSE EDIT FORM
     public function edit(Course $course)
     {
-        return view('admin.courses.update', compact('course'));
+        return view('admin.courses.edit', compact('course'));
 
         //$courses = Course::findOrFail($id);
         //return view('admin.courses.update', compact('courses'));
